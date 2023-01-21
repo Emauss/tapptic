@@ -1,0 +1,21 @@
+@import '../themes/theme.scss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $primaryFont;
+}
+
+p,
+small,
+article {
+  font-family: $secondaryFont;
+}
+
+img {
+  max-width: 100%;
+}
