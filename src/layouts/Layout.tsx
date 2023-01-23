@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from 'react';
 import { LayoutProps } from '../types/layout/LayoutProps';
-import styles from './Layout.module.scss';
+import styles from './layout.module.scss';
 
 const Layout = ({ children, pageTitle }: LayoutProps): ReactElement => {
   useEffect(() => {
