@@ -1,0 +1,23 @@
+@import '../themes/theme.scss';
+
+.form {
+  &Header {
+    margin: 2rem 0;
+
+    &Title {
+      text-align: center;
+    }
+  }
+
+  &Response {
+    font-size: 1.25rem;
+  }
+
+  &Error {
+    color: $error;
+  }
+
+  &Correct {
+    color: $correct;
+  }
+}

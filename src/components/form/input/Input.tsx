@@ -11,7 +11,7 @@ const Input = ({ label, error, errorMessage, disableError, id, ...props }: Input
 
     <FormField error={error} errorMessage={errorMessage} disableError={disableError} {...props}>
       {props.type === 'textarea' ? (
-        <textarea className={`${styles.input} ${error ? styles.inputError : ''}`} id={id} rows={4} onChange={props.onChange} />
+        <textarea className={`${styles.input} ${styles.textarea} ${error ? styles.inputError : ''}`} id={id} rows={4} {...props} />
       ) : (
         <input className={`${styles.input} ${error ? styles.inputError : ''}`} id={id} type={props.type ? props.type : 'text'} {...props} />
       )}

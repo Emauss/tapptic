@@ -8,10 +8,15 @@ import { schema } from '../utils/misc/formSchema';
 import { FormValues } from '../types/form/FormValues';
 import { IParams } from '../interfaces/api/IParams';
 import FormInput from '../components/form/formInput/FormInput';
-import styles from './home.module.scss';
+
+import styles from './register.module.scss';
+import Spinner from '../components/form/spinner/Spinner';
+import Submit from '../components/form/submit/Submit';
 
 const Register = (): ReactElement => {
   const [response, setResponse] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
@@ -22,18 +27,22 @@ const Register = (): ReactElement => {
     resolver: yupResolver(schema),
   });
 
-  const submitForm: SubmitHandler<FormValues> = (data: IParams) => {
+  const submitForm: SubmitHandler<FormValues> = async (data: IParams) => {
+    setLoading(true);
     setResponse('');
 
-    postForm(data).then(
+    await postForm(data).then(
       (res) => {
-        console.log(res);
+        setResponse(res.message);
+        if (!res.registrationSuccessful) setError(true);
       },
       (err: AxiosError) => {
-        console.log(err.message);
         setResponse(err.message);
+        setError(true);
       }
     );
+
+    setLoading(false);
   };
 
   return (
@@ -52,12 +61,13 @@ const Register = (): ReactElement => {
           <FormInput label={'Login:'} name='login' control={control} />
           <FormInput label={'Hasło:'} name='password' control={control} type='password' />
           <FormInput label={'Opis'} name='description' control={control} type='textarea' />
-          <div className={styles.formContentSubmit}>
-            <button className={styles.formContentSubmitBtn} type='submit'>
-              Wyślij
-            </button>
-          </div>
-          {!!response && <p className='fs-4 mt-3'>{response}</p>}
+          <Submit />
+
+          {response.length ? (
+            <p className={`${styles.formResponse} ${error ? styles.formError : styles.formCorrect}`}>{response}</p>
+          ) : (
+            <Spinner loading={loading} />
+          )}
         </form>
       </div>
     </div>
