@@ -1,0 +1,41 @@
+@import '../themes/theme.scss';
+
+.form {
+  &Header {
+    margin: 2rem 0;
+
+    &Title {
+      text-align: center;
+    }
+  }
+
+  &Content {
+    &Submit {
+      text-align: center;
+      width: 100%;
+      margin-top: 2rem;
+
+      &Btn {
+        background: $blue;
+        box-shadow: 0rem 0rem 0.5rem $shadowDark;
+        border-radius: 1.25rem;
+        border: none;
+        padding: 0.875rem 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.125rem;
+        font: {
+          size: 1.25rem;
+        }
+        cursor: pointer;
+        -webkit-text-stroke: 0.0625rem $textStroke;
+        color: $white;
+        transition: $transition;
+
+        &:hover {
+          transition: $transition;
+          box-shadow: 0rem 0rem 0.875rem $shadowHover;
+        }
+      }
+    }
+  }
+}

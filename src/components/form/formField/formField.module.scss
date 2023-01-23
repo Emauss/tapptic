@@ -1,0 +1,12 @@
+@import '../../../themes/theme.scss';
+
+.errorMessage {
+  text-align: right;
+  font: {
+    family: $secondaryFont;
+    weight: 300;
+    size: 1rem;
+    style: italic;
+  }
+  color: $error;
+}

@@ -4,5 +4,4 @@ import { FormFieldProps } from './IFormFieldProps';
 export type InputProps = {
   label?: string;
   disableError?: boolean;
-} & React.HTMLProps<HTMLInputElement> &
-  Omit<FormFieldProps, 'children' | 'className'>;
+} & (React.HTMLProps<HTMLInputElement> & React.HTMLProps<HTMLTextAreaElement> & Omit<FormFieldProps, 'children' | 'className'>);
